@@ -31,6 +31,9 @@ the game in play and POST `/move` plays a move, until the env answers
 never a clock, no unseeded randomness — so a trial replays move for move,
 byte for byte.
 
+The packed entry `main.py` is produced from its readable Python source
+with `makefun compress`; the source travels with the submission.
+
 Bounty: https://make.fun/bounty/tiny-chess-01
 
 ## License
