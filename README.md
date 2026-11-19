@@ -8,9 +8,19 @@ An original chess engine written in Python for make.fun's
 [tiny-chess-01](https://make.fun/bounty/tiny-chess-01) bounty, "Build the
 strongest chess engine in 4 KB of Python". The whole engine is `main.py`:
 a negamax alpha-beta search with PVS, quiescence (captures, promotions and
-check evasions), a transposition table, MVV-LVA / killer / history move
-ordering, null-move pruning, late move reductions and check extensions,
-over a tapered material + piece-square evaluation with a bishop-pair bonus.
+check evasions, with delta pruning), a transposition table, MVV-LVA /
+killer / history move ordering, null-move pruning, late move reductions
+and check extensions, over a tapered material + piece-square evaluation
+with a bishop-pair bonus.
+
+Version 2 replaces the leaf evaluation's full 64-square scan with an
+incremental evaluation maintained inside make/unmake (the tapered score,
+the game phase and the bishop counts are updated move by move and restored
+from the undo stack), and precomputes the queen's combined sliding rays.
+The speedup is reinvested in a larger fixed budget of 120,000 nodes per
+move (up from 80,000). In a 100-game self-play match against the previous
+version (20k vs 30k nodes per move, colors swapped over 50 openings) the
+new engine scored 59.5% (48W 23D 29L, about +67 Elo).
 
 ## How it plays
 
